@@ -1,81 +1,355 @@
-# 🚀 **DevOps Project: Book My Show App Deployment**  
+# 🎬 BookMyShow Clone – End-to-End DevSecOps CI/CD Pipeline on AWS EKS
 
-Welcome to the **Book My Show App Deployment** project! This project demonstrates how to deploy a **Book My Show-clone application** using modern DevOps tools and practices, following a **DevSecOps** approach.  
+## 🚀 Project Overview
 
----
+This project demonstrates a complete **DevSecOps CI/CD implementation** using a BookMyShow Clone application.
 
-## 🛠️ **Tools & Services Used**
+The application is integrated with modern DevOps and Cloud-Native tools to automate:
 
-| **Category**       | **Tools**                                                                                                                                                                                                 |
-|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Version Control** | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)                                                                                                       |
-| **CI/CD**           | ![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)                                                                                                    |
-| **Code Quality**    | ![SonarQube](https://img.shields.io/badge/SonarQube-4E9BCD?style=flat-square&logo=sonarqube&logoColor=white)                                                                                              |
-| **Containerization**| ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)                                                                                                       |
-| **Orchestration**   | ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)                                                                                          |
-| **Monitoring**      | ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white) ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white) |
-| **Security**        | ![OWASP](https://img.shields.io/badge/OWASP-000000?style=flat-square&logo=owasp&logoColor=white) ![Trivy](https://img.shields.io/badge/Trivy-00979D?style=flat-square&logo=trivy&logoColor=white)         |
+* Source Code Management
+* Continuous Integration
+* Code Quality Analysis
+* Security Scanning
+* Containerization
+* Continuous Deployment
+* Kubernetes Orchestration
+* Infrastructure Monitoring
 
----
-
-## 🚦 **Project Stages**
-
-### **Phase 1: Deployment to Docker Container**
-- Containerize the application using Docker.
-- Build and push Docker images to a container registry.
-- Run the application in a Docker container.
-
-### **Phase 2: Deployment to EKS Cluster with Monitoring**
-- Deploy the application to an **Amazon EKS (Elastic Kubernetes Service)** cluster.
-- Set up **Prometheus** and **Grafana** for monitoring and visualization.
-- Implement **Trivy** for vulnerability scanning and **OWASP** for security best practices.
+The application is deployed on **Amazon EKS (Elastic Kubernetes Service)** and monitored using **Prometheus + Grafana**.
 
 ---
 
-## 📂 **Code Repository**
-Explore the code and contribute to the project:  
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/KastroVKiran/Book-My-Show.git)
+## 🏗️ Architecture
+
+```text
+GitHub
+   │
+   ▼
+Jenkins Pipeline
+   │
+   ├── SonarQube Analysis
+   ├── Quality Gate
+   ├── Trivy Security Scan
+   ├── Docker Build
+   └── Docker Push
+          │
+          ▼
+     Amazon EKS
+          │
+          ▼
+ Kubernetes Deployment
+          │
+          ▼
+ LoadBalancer Service
+          │
+          ▼
+   BookMyShow Application
+
+Monitoring Stack
+----------------
+Node Exporter
+      │
+      ▼
+ Prometheus
+      │
+      ▼
+  Grafana
+```
 
 ---
 
-## 📹 **Project Video**
-Watch the step-by-step deployment process:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/hBGVwa8MY4A)
+## 🛠️ Tech Stack
+
+### Cloud
+
+* AWS EC2
+* AWS EKS
+* AWS Elastic Load Balancer
+
+### DevOps Tools
+
+* Jenkins
+* Docker
+* Kubernetes
+* SonarQube
+* Trivy
+* Prometheus
+* Grafana
+* Node Exporter
+* cAdvisor
+
+### SCM
+
+* Git
+* GitHub
+
+### Frontend
+
+* ReactJS
+* JavaScript
+* HTML
+* CSS
 
 ---
 
-## 📺 **Docker Playlist**
-Learn more about Docker with this playlist:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLs-PsDpuAuTeNx3OgGQ1QrpNBo-XE6VBh)
+## ⚙️ CI/CD Pipeline Workflow
+
+### Jenkins Stages
+
+```text
+✔ Clean Workspace
+✔ Checkout Code
+✔ SonarQube Analysis
+✔ Quality Gate Validation
+✔ Install Dependencies
+✔ Trivy File System Scan
+✔ Docker Build
+✔ Docker Push
+✔ Deploy to Kubernetes
+✔ Post Actions
+```
 
 ---
 
-## 🚀 **Other DevOps Projects**
+## 🔍 Code Quality Analysis
 
-| **Project**                                | **Video Link**                                                                                   |
-|--------------------------------------------|--------------------------------------------------------------------------------------------------|
-| **SWIGGY App Project**                     | [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/x55z7rk0NAU) |
-| **Zomato App Project**                     | [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/GyoI6-I68aQ) |
-| **Jenkins + Terraform + EKS Integration**  | [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=sonarqube&logoColor=white)](https://youtu.be/DV79JyFbQE8) |
-| **AWS 3 Tier Architecture Project**        | [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=nexus&logoColor=white)](https://youtu.be/Oj-Hr_aulKA) |
+### SonarQube
 
----
+SonarQube performs:
 
-## 🤝 **Connect with Me**
-
-Let's connect and discuss DevOps!  
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kastro-kiran/)  
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/EGw6ZlwUHZc82cA0vXFnwm)
+* Bug Detection
+* Code Smell Analysis
+* Vulnerability Detection
+* Maintainability Checks
+* Quality Gate Validation
 
 ---
 
-## 📣 **Feedback Request**
+## 🔐 Security Scanning
 
-After deploying the app, share your feedback on LinkedIn! Tag me and include the project link to help spread the word.  
+### Trivy
+
+Trivy is used to scan:
+
+* Source Code
+* Dependencies
+* Docker Images
+
+Example:
+
+```bash
+trivy image <image-name>
+```
 
 ---
 
-## 🎉 **Happy Learning!**  
+## 🐳 Docker Containerization
 
-**KASTRO KIRAN V**
+Build Image
+
+```bash
+docker build -t bookmyshow .
+```
+
+Push Image
+
+```bash
+docker push <dockerhub-username>/bookmyshow
+```
+
+---
+
+## ☸️ Kubernetes Deployment
+
+Deploy Application
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+Deploy Service
+
+```bash
+kubectl apply -f service.yaml
+```
+
+Verify Resources
+
+```bash
+kubectl get pods
+kubectl get svc
+kubectl get nodes
+```
+
+---
+
+## 📊 Monitoring Setup
+
+### Prometheus
+
+Prometheus collects metrics from:
+
+* Node Exporter
+* cAdvisor
+* Kubernetes Components
+
+Access:
+
+```text
+http://<SERVER-IP>:9090
+```
+
+---
+
+### Grafana
+
+Grafana visualizes metrics through dashboards.
+
+Access:
+
+```text
+http://<SERVER-IP>:3001
+```
+
+Default Credentials:
+
+```text
+Username: admin
+Password: admin
+```
+
+---
+
+### Node Exporter
+
+Monitored Metrics:
+
+* CPU Usage
+* Memory Usage
+* Disk Utilization
+* Network Traffic
+* System Uptime
+
+Port:
+
+```text
+9100
+```
+
+---
+
+### cAdvisor
+
+Container Metrics:
+
+* CPU Usage
+* Memory Usage
+* Network Usage
+* Filesystem Usage
+
+Port:
+
+```text
+8081
+```
+
+---
+
+## 📈 Monitoring Dashboard
+
+The Grafana dashboard displays:
+
+### System Monitoring
+
+* CPU Usage
+* Memory Usage
+* Disk Usage
+* Network Traffic
+* Uptime
+
+### Container Monitoring
+
+* Container CPU
+* Container Memory
+* Container Network
+* Container Health
+
+### Kubernetes Monitoring
+
+* Nodes
+* Pods
+* Services
+* Cluster Health
+
+---
+
+## 📷 Project Screenshots
+
+### Application Dashboard
+
+![Application](screenshots/application.png)
+
+### Jenkins Pipeline
+
+![Jenkins](screenshots/jenkins.png)
+
+### SonarQube Analysis
+
+![SonarQube](screenshots/sonarqube.png)
+
+### Grafana Monitoring
+
+![Grafana](screenshots/grafana.png)
+
+### Kubernetes Cluster
+
+![Kubernetes](screenshots/kubernetes.png)
+
+---
+
+## 🎯 Learning Outcomes
+
+This project helped in understanding:
+
+* CI/CD Automation
+* Docker Containerization
+* Kubernetes Deployments
+* AWS EKS Management
+* SonarQube Quality Gates
+* Trivy Security Scanning
+* Prometheus Monitoring
+* Grafana Visualization
+* DevSecOps Best Practices
+
+---
+
+## 🔮 Future Enhancements
+
+* ArgoCD GitOps Deployment
+* Helm Charts
+* Terraform Infrastructure Automation
+* Slack Notifications
+* Alertmanager Integration
+* CloudWatch Monitoring
+
+---
+
+## 👨‍💻 Author
+
+**Sahil Mahadik**
+
+M.Sc Computer Science | DevOps Enthusiast
+
+GitHub: https://github.com/SahilM1508
+
+LinkedIn: https://www.linkedin.com/in/sahil-mahadik-27b2812a1/
+
+---
+
+## 🙏 Acknowledgement
+
+Special thanks to **Kastrov Kiran** for the DevOps learning resources, project guidance, and practical implementation knowledge that helped in building this end-to-end DevSecOps project.
+
+---
+
+⭐ If you found this project useful, please Star the repository.
