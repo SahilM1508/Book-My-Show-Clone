@@ -1,8 +1,3 @@
-												DevOps Project
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-									Book My Show Clone App Deployment 
-													by
-												Kastro Kiran V
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ****************************************************************************************************************************
 											PART I: Docker Deployment
@@ -100,9 +95,9 @@ eksctl version
 1.3.4. Create EKS Cluster
 Execute the below commands as separate set
 (a)
-eksctl create cluster --name=kastro-eks \
-                      --region=us-east-1 \
-                      --zones=us-east-1a,us-east-1b \
+eksctl create cluster --name=sahil-eks \
+                      --region=ap-south-1 \
+                      --zones=ap-south-1a,ap-south-1b \
                       --version=1.30 \
                       --without-nodegroup
 
@@ -111,8 +106,8 @@ Goto EKS Console and verify the cluster.
 
 (b)
 eksctl utils associate-iam-oidc-provider \
-    --region us-east-1 \
-    --cluster kastro-eks \
+    --region ap-south-1 \
+    --cluster sahil-eks \
     --approve
 
 The above command is crucial when setting up an EKS cluster because it enables IAM roles for service accounts (IRSA)
@@ -124,8 +119,8 @@ Without this, these services will not be able to access AWS resources securely.
 (c)
 Before executing the below command, in the 'ssh-public-key' keep the  '<PEM FILE NAME>' (dont give .pem. Just give the pem file name) which was used to create Jenkins Server
 
-eksctl create nodegroup --cluster=kastro-eks \
-                       --region=us-east-1 \
+eksctl create nodegroup --cluster=sahil-eks \
+                       --region=ap-south-1 \
                        --name=node2 \
                        --node-type=t3.medium \
                        --nodes=3 \
@@ -133,7 +128,7 @@ eksctl create nodegroup --cluster=kastro-eks \
                        --nodes-max=4 \
                        --node-volume-size=20 \
                        --ssh-access \
-                       --ssh-public-key=Kastro \
+                       --ssh-public-key=sahil \
                        --managed \
                        --asg-access \
                        --external-dns-access \
@@ -307,7 +302,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/KastroVKiran/Book-My-Show.git'
+                git branch: 'main', url: 'https://github.com/SahilM1508/Book-My-Show-Clone.git'
                 sh 'ls -la'  // Verify files after checkout
             }
         }
@@ -354,10 +349,10 @@ pipeline {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
                         sh ''' 
                         echo "Building Docker image..."
-                        docker build --no-cache -t kastrov/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
+                        docker build --no-cache -t sahil158/bms:latest -f bookmyshow-app/Dockerfile bookmyshow-app
 
                         echo "Pushing Docker image to registry..."
-                        docker push kastrov/bms:latest
+                        docker push sahil158/bms:latest
                         '''
                     }
                 }
@@ -371,7 +366,7 @@ pipeline {
                 docker rm bms || true
 
                 echo "Running new container on port 3000..."
-                docker run -d --restart=always --name bms -p 3000:3000 kastrov/bms:latest
+                docker run -d --restart=always --name bms -p 3000:3000 sahil158/bms:latest
 
                 echo "Checking running containers..."
                 docker ps -a
@@ -390,7 +385,7 @@ pipeline {
                 body: "Project: ${env.JOB_NAME}<br/>" +
                       "Build Number: ${env.BUILD_NUMBER}<br/>" +
                       "URL: ${env.BUILD_URL}<br/>",
-                to: 'kastrokiran@gmail.com',
+                to: 'sahilkiran@gmail.com',
                 attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
         }
     }
@@ -434,7 +429,7 @@ sudo systemctl restart jenkins
 
 Switch to Jenkins user
 sudo -su jenkins
-aws eks update-kubeconfig --name kastro-eks --region us-east-1
+aws eks update-kubeconfig --name sahil-eks --region ap-south-1
 
 
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
@@ -450,9 +445,9 @@ pipeline {
 
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
-        DOCKER_IMAGE = 'kastrov/bms:latest'
-        EKS_CLUSTER_NAME = 'kastro-eks'
-        AWS_REGION = 'ap-northeast-1'
+        DOCKER_IMAGE = 'sahil158/bms:latest'
+        EKS_CLUSTER_NAME = 'sahil-eks'
+        AWS_REGION = 'ap-south-1'
     }
 
     stages {
@@ -464,7 +459,7 @@ pipeline {
 
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/KastroVKiran/Book-My-Show.git'
+                git branch: 'main', url: 'https://github.com/SahilM1508/Book-My-Show-Clone.git'
                 sh 'ls -la'  // Verify files after checkout
             }
         }
@@ -560,7 +555,7 @@ pipeline {
                 body: "Project: ${env.JOB_NAME}<br/>" +
                       "Build Number: ${env.BUILD_NUMBER}<br/>" +
                       "URL: ${env.BUILD_URL}<br/>",
-                to: 'kastrokiran@gmail.com',
+                to: 'sahilkiran@gmail.com',
                 attachmentsPattern: 'trivyfs.txt'
         }
     }
